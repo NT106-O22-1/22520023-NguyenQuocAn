@@ -67,8 +67,8 @@ namespace Lab1
 
         private void button9_Click(object sender, EventArgs e)
         {
-            Lab01_Bai09 bai09 = new Lab01_Bai09();
-            bai09.ShowDialog();
+            Lab01_Bai03_1 bai03_1 = new Lab01_Bai03_1();
+            bai03_1.ShowDialog();
         }
     }
 }

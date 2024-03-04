@@ -75,7 +75,7 @@
             // button4
             // 
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(294, 100);
+            button4.Location = new Point(294, 189);
             button4.Name = "button4";
             button4.Size = new Size(206, 59);
             button4.TabIndex = 3;
@@ -86,7 +86,7 @@
             // button5
             // 
             button5.FlatStyle = FlatStyle.Flat;
-            button5.Location = new Point(294, 189);
+            button5.Location = new Point(294, 278);
             button5.Name = "button5";
             button5.Size = new Size(206, 59);
             button5.TabIndex = 4;
@@ -97,7 +97,7 @@
             // button6
             // 
             button6.FlatStyle = FlatStyle.Flat;
-            button6.Location = new Point(294, 278);
+            button6.Location = new Point(545, 100);
             button6.Name = "button6";
             button6.Size = new Size(206, 59);
             button6.TabIndex = 5;
@@ -108,7 +108,7 @@
             // button7
             // 
             button7.FlatStyle = FlatStyle.Flat;
-            button7.Location = new Point(545, 100);
+            button7.Location = new Point(545, 189);
             button7.Name = "button7";
             button7.Size = new Size(206, 59);
             button7.TabIndex = 6;
@@ -119,7 +119,7 @@
             // button8
             // 
             button8.FlatStyle = FlatStyle.Flat;
-            button8.Location = new Point(545, 189);
+            button8.Location = new Point(545, 278);
             button8.Name = "button8";
             button8.Size = new Size(206, 59);
             button8.TabIndex = 7;
@@ -130,11 +130,11 @@
             // button9
             // 
             button9.FlatStyle = FlatStyle.Flat;
-            button9.Location = new Point(545, 278);
+            button9.Location = new Point(294, 100);
             button9.Name = "button9";
             button9.Size = new Size(206, 59);
             button9.TabIndex = 8;
-            button9.Text = "Bài 9";
+            button9.Text = "Bài 3.1";
             button9.UseVisualStyleBackColor = true;
             button9.Click += button9_Click;
             // 
