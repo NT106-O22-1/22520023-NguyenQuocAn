@@ -16,5 +16,40 @@ namespace Lab1
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int num1, num2;
+            long sum = 0;
+
+            if (Int32.TryParse(textBox1.Text.Trim(), out num1) && Int32.TryParse(textBox2.Text.Trim(), out num2))
+            {
+                sum = num1 + num2;
+                textBox3.Text = sum.ToString();
+            }
+
+            else
+            {
+                if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đủ 2 số!");
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập số nguyên!");
+                    textBox3.Clear();
+                }
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
