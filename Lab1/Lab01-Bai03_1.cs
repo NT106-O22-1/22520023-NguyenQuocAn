@@ -104,6 +104,7 @@ namespace Lab1
             res = res.Replace("mươi một", "mươi mốt");
 
             //
+            res = res.Replace("   ", " ");
             res = res.Replace("  ", " ");
 
             resTxt.Text = res.Trim();
