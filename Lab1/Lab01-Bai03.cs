@@ -38,40 +38,8 @@ namespace Lab1
                 return;
             }
 
-            switch (num)
-            {
-                case 0:
-                    resTxt.Text = "Không";
-                    break;
-                case 1:
-                    resTxt.Text = "Một";
-                    break;
-                case 2:
-                    resTxt.Text = "Hai";
-                    break;
-                case 3:
-                    resTxt.Text = "Ba";
-                    break;
-                case 4:
-                    resTxt.Text = "Bốn";
-                    break;
-                case 5:
-                    resTxt.Text = "Năm";
-                    break;
-                case 6:
-                    resTxt.Text = "Sáu";
-                    break;
-                case 7:
-                    resTxt.Text = "Bảy";
-                    break;
-                case 8:
-                    resTxt.Text = "Tám";
-                    break;
-                case 9:
-                    resTxt.Text = "Chín";
-                    break;
-            }
-
+            string[] p = { "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín" };
+            resTxt.Text = p[num];
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
