@@ -28,12 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Lab01_Bai03_1";
+            numLabel = new Label();
+            resLabel = new Label();
+            numTxt = new TextBox();
+            resTxt = new TextBox();
+            readBtn = new Button();
+            clearBtn = new Button();
+            exitBtn = new Button();
+            SuspendLayout();
+            // 
+            // numLabel
+            // 
+            numLabel.AutoSize = true;
+            numLabel.Location = new Point(91, 115);
+            numLabel.Name = "numLabel";
+            numLabel.Size = new Size(246, 20);
+            numLabel.TabIndex = 0;
+            numLabel.Text = "Nhập số nguyên có tối đa 12 chữ số";
+            // 
+            // resLabel
+            // 
+            resLabel.AutoSize = true;
+            resLabel.Location = new Point(91, 199);
+            resLabel.Name = "resLabel";
+            resLabel.Size = new Size(60, 20);
+            resLabel.TabIndex = 1;
+            resLabel.Text = "Kết quả";
+            // 
+            // numTxt
+            // 
+            numTxt.BorderStyle = BorderStyle.FixedSingle;
+            numTxt.Location = new Point(343, 113);
+            numTxt.Name = "numTxt";
+            numTxt.Size = new Size(184, 27);
+            numTxt.TabIndex = 2;
+            // 
+            // resTxt
+            // 
+            resTxt.BorderStyle = BorderStyle.FixedSingle;
+            resTxt.Location = new Point(91, 234);
+            resTxt.Name = "resTxt";
+            resTxt.ReadOnly = true;
+            resTxt.Size = new Size(436, 27);
+            resTxt.TabIndex = 3;
+            // 
+            // readBtn
+            // 
+            readBtn.Location = new Point(581, 115);
+            readBtn.Name = "readBtn";
+            readBtn.Size = new Size(94, 29);
+            readBtn.TabIndex = 4;
+            readBtn.Text = "Đọc";
+            readBtn.UseVisualStyleBackColor = true;
+            readBtn.Click += readBtn_Click;
+            // 
+            // clearBtn
+            // 
+            clearBtn.Location = new Point(581, 175);
+            clearBtn.Name = "clearBtn";
+            clearBtn.Size = new Size(94, 29);
+            clearBtn.TabIndex = 5;
+            clearBtn.Text = "Xoá";
+            clearBtn.UseVisualStyleBackColor = true;
+            clearBtn.Click += clearBtn_Click;
+            // 
+            // exitBtn
+            // 
+            exitBtn.Location = new Point(581, 232);
+            exitBtn.Name = "exitBtn";
+            exitBtn.Size = new Size(94, 29);
+            exitBtn.TabIndex = 6;
+            exitBtn.Text = "Thoát";
+            exitBtn.UseVisualStyleBackColor = true;
+            exitBtn.Click += exitBtn_Click;
+            // 
+            // Lab01_Bai03_1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(exitBtn);
+            Controls.Add(clearBtn);
+            Controls.Add(readBtn);
+            Controls.Add(resTxt);
+            Controls.Add(numTxt);
+            Controls.Add(resLabel);
+            Controls.Add(numLabel);
+            Name = "Lab01_Bai03_1";
+            Text = "Lab01_Bai03_1";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label numLabel;
+        private Label resLabel;
+        private TextBox numTxt;
+        private TextBox resTxt;
+        private Button readBtn;
+        private Button clearBtn;
+        private Button exitBtn;
     }
 }
