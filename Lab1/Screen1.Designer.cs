@@ -57,12 +57,13 @@
             // checkedListBox
             // 
             checkedListBox.ColumnWidth = 60;
+            checkedListBox.Font = new Font("Segoe UI", 10F);
             checkedListBox.FormattingEnabled = true;
             checkedListBox.Items.AddRange(new object[] { "A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3", "A4", "B4", "C4", "A5", "B5", "C5" });
             checkedListBox.Location = new Point(128, 173);
             checkedListBox.MultiColumn = true;
             checkedListBox.Name = "checkedListBox";
-            checkedListBox.Size = new Size(298, 92);
+            checkedListBox.Size = new Size(327, 79);
             checkedListBox.TabIndex = 3;
             // 
             // label1
