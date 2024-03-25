@@ -36,9 +36,10 @@
             // 
             // readBtn
             // 
-            this.readBtn.Location = new System.Drawing.Point(49, 12);
+            this.readBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.readBtn.Location = new System.Drawing.Point(12, 396);
             this.readBtn.Name = "readBtn";
-            this.readBtn.Size = new System.Drawing.Size(143, 40);
+            this.readBtn.Size = new System.Drawing.Size(223, 40);
             this.readBtn.TabIndex = 0;
             this.readBtn.Text = "ĐỌC FILE";
             this.readBtn.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@
             // 
             // writeBtn
             // 
-            this.writeBtn.Location = new System.Drawing.Point(49, 81);
+            this.writeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.writeBtn.Location = new System.Drawing.Point(251, 396);
             this.writeBtn.Name = "writeBtn";
-            this.writeBtn.Size = new System.Drawing.Size(143, 40);
+            this.writeBtn.Size = new System.Drawing.Size(209, 40);
             this.writeBtn.TabIndex = 1;
             this.writeBtn.Text = "GHI FILE";
             this.writeBtn.UseVisualStyleBackColor = true;
@@ -56,17 +58,20 @@
             // 
             // richTextBox
             // 
-            this.richTextBox.Location = new System.Drawing.Point(233, 12);
+            this.richTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.richTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox.Location = new System.Drawing.Point(12, 12);
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.ReadOnly = true;
-            this.richTextBox.Size = new System.Drawing.Size(555, 426);
+            this.richTextBox.Size = new System.Drawing.Size(776, 361);
             this.richTextBox.TabIndex = 2;
             this.richTextBox.Text = "";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 406);
+            this.label1.Location = new System.Drawing.Point(631, 400);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 32);
             this.label1.TabIndex = 3;
@@ -76,6 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox);
