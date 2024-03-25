@@ -30,6 +30,7 @@ namespace Lab2
             }
             FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
             StreamReader sr = new StreamReader(fs);
+            richTextBox.Clear();
             richTextBox.AppendText(sr.ReadToEnd());
 
             fs.Close();
