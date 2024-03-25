@@ -37,10 +37,12 @@
             // 
             // richTextBox
             // 
+            this.richTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.richTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox.Location = new System.Drawing.Point(12, 12);
             this.richTextBox.Name = "richTextBox";
+            this.richTextBox.ReadOnly = true;
             this.richTextBox.Size = new System.Drawing.Size(776, 369);
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
