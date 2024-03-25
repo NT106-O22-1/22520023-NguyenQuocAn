@@ -47,6 +47,9 @@
             // 
             // richTextBox
             // 
+            this.richTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.richTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox.Location = new System.Drawing.Point(322, 12);
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.ReadOnly = true;
@@ -56,6 +59,7 @@
             // 
             // readBtn
             // 
+            this.readBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.readBtn.Location = new System.Drawing.Point(56, 12);
             this.readBtn.Name = "readBtn";
             this.readBtn.Size = new System.Drawing.Size(196, 42);
@@ -130,6 +134,7 @@
             // 
             // nameTxb
             // 
+            this.nameTxb.BackColor = System.Drawing.SystemColors.Window;
             this.nameTxb.Location = new System.Drawing.Point(138, 137);
             this.nameTxb.Name = "nameTxb";
             this.nameTxb.ReadOnly = true;
@@ -138,6 +143,7 @@
             // 
             // sizeTxb
             // 
+            this.sizeTxb.BackColor = System.Drawing.SystemColors.Window;
             this.sizeTxb.Location = new System.Drawing.Point(138, 178);
             this.sizeTxb.Name = "sizeTxb";
             this.sizeTxb.ReadOnly = true;
@@ -146,6 +152,7 @@
             // 
             // urlTxb
             // 
+            this.urlTxb.BackColor = System.Drawing.SystemColors.Window;
             this.urlTxb.Location = new System.Drawing.Point(138, 221);
             this.urlTxb.Name = "urlTxb";
             this.urlTxb.ReadOnly = true;
@@ -154,6 +161,7 @@
             // 
             // lineCountTxb
             // 
+            this.lineCountTxb.BackColor = System.Drawing.SystemColors.Window;
             this.lineCountTxb.Location = new System.Drawing.Point(138, 255);
             this.lineCountTxb.Name = "lineCountTxb";
             this.lineCountTxb.ReadOnly = true;
@@ -162,6 +170,7 @@
             // 
             // wordsCountTxb
             // 
+            this.wordsCountTxb.BackColor = System.Drawing.SystemColors.Window;
             this.wordsCountTxb.Location = new System.Drawing.Point(138, 296);
             this.wordsCountTxb.Name = "wordsCountTxb";
             this.wordsCountTxb.ReadOnly = true;
@@ -170,6 +179,7 @@
             // 
             // charCountTxb
             // 
+            this.charCountTxb.BackColor = System.Drawing.SystemColors.Window;
             this.charCountTxb.Location = new System.Drawing.Point(138, 337);
             this.charCountTxb.Name = "charCountTxb";
             this.charCountTxb.ReadOnly = true;
@@ -180,6 +190,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.charCountTxb);
             this.Controls.Add(this.wordsCountTxb);
