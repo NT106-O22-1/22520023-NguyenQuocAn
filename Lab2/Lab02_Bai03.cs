@@ -42,9 +42,11 @@ namespace Lab2
 
         static string Evaluate(string line)
         {
-            DataTable dt = new DataTable();
-            var v = dt.Compute(line, "");
-            return v.ToString();
+            MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
+            sc.Language = "VBScript";
+            string expression = line;
+            object result = sc.Eval(expression);
+            return result.ToString();
         }
 
         private void calBtn_Click(object sender, EventArgs e)
