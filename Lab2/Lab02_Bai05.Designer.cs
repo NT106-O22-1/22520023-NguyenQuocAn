@@ -42,10 +42,10 @@
             // 
             // readBtn
             // 
-            this.readBtn.Location = new System.Drawing.Point(9, 10);
-            this.readBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.readBtn.Location = new System.Drawing.Point(12, 12);
+            this.readBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.readBtn.Name = "readBtn";
-            this.readBtn.Size = new System.Drawing.Size(106, 31);
+            this.readBtn.Size = new System.Drawing.Size(141, 38);
             this.readBtn.TabIndex = 0;
             this.readBtn.Text = "Đọc input5.json";
             this.readBtn.UseVisualStyleBackColor = true;
@@ -53,10 +53,10 @@
             // 
             // writeBtn
             // 
-            this.writeBtn.Location = new System.Drawing.Point(9, 54);
-            this.writeBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.writeBtn.Location = new System.Drawing.Point(12, 66);
+            this.writeBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.writeBtn.Name = "writeBtn";
-            this.writeBtn.Size = new System.Drawing.Size(106, 32);
+            this.writeBtn.Size = new System.Drawing.Size(141, 39);
             this.writeBtn.TabIndex = 1;
             this.writeBtn.Text = "Xuất ouput5.json";
             this.writeBtn.UseVisualStyleBackColor = true;
@@ -65,50 +65,47 @@
             // screenCb
             // 
             this.screenCb.FormattingEnabled = true;
-            this.screenCb.Location = new System.Drawing.Point(460, 21);
-            this.screenCb.Margin = new System.Windows.Forms.Padding(2);
+            this.screenCb.Location = new System.Drawing.Point(613, 26);
+            this.screenCb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.screenCb.Name = "screenCb";
-            this.screenCb.Size = new System.Drawing.Size(92, 21);
+            this.screenCb.Size = new System.Drawing.Size(121, 24);
             this.screenCb.TabIndex = 2;
             this.screenCb.SelectedValueChanged += new System.EventHandler(this.screenCb_SelectedValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(361, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(481, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.Size = new System.Drawing.Size(114, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Chọn phòng chiếu";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(193, 24);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(257, 30);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.Size = new System.Drawing.Size(70, 16);
             this.label2.TabIndex = 4;
             this.label2.Text = "Chọn phim";
             // 
             // movieCb
             // 
             this.movieCb.FormattingEnabled = true;
-            this.movieCb.Location = new System.Drawing.Point(256, 21);
-            this.movieCb.Margin = new System.Windows.Forms.Padding(2);
+            this.movieCb.Location = new System.Drawing.Point(341, 26);
+            this.movieCb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.movieCb.Name = "movieCb";
-            this.movieCb.Size = new System.Drawing.Size(92, 21);
+            this.movieCb.Size = new System.Drawing.Size(121, 24);
             this.movieCb.TabIndex = 5;
             this.movieCb.SelectedValueChanged += new System.EventHandler(this.movieCb_SelectedValueChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(344, 91);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(459, 112);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.Size = new System.Drawing.Size(92, 16);
             this.label3.TabIndex = 6;
             this.label3.Text = "Chọn chỗ ngồi";
             this.label3.Visible = false;
@@ -134,20 +131,20 @@
             "A5",
             "B5",
             "C5"});
-            this.checkedListBox.Location = new System.Drawing.Point(212, 126);
-            this.checkedListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.checkedListBox.Location = new System.Drawing.Point(310, 143);
+            this.checkedListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkedListBox.MultiColumn = true;
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(154, 58);
+            this.checkedListBox.Size = new System.Drawing.Size(400, 109);
             this.checkedListBox.TabIndex = 7;
             this.checkedListBox.Visible = false;
             // 
             // purchaseBtn
             // 
-            this.purchaseBtn.Location = new System.Drawing.Point(321, 229);
-            this.purchaseBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.purchaseBtn.Location = new System.Drawing.Point(428, 282);
+            this.purchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.purchaseBtn.Name = "purchaseBtn";
-            this.purchaseBtn.Size = new System.Drawing.Size(125, 42);
+            this.purchaseBtn.Size = new System.Drawing.Size(167, 52);
             this.purchaseBtn.TabIndex = 8;
             this.purchaseBtn.Text = "Mua vé";
             this.purchaseBtn.UseVisualStyleBackColor = true;
@@ -156,19 +153,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(297, 310);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(396, 382);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(299, 39);
+            this.label4.Size = new System.Drawing.Size(355, 48);
             this.label4.TabIndex = 9;
             this.label4.Text = "Lưu ý: \"sold\" là những ghế đã bán.\r\nCố tình chọn những ghế này có thể hiện \"Đặt v" +
     "é thành công\"\r\nTuy nhiên sẽ không được tính.";
             // 
             // Lab02_Bai05
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.purchaseBtn);
             this.Controls.Add(this.checkedListBox);
@@ -179,7 +175,7 @@
             this.Controls.Add(this.screenCb);
             this.Controls.Add(this.writeBtn);
             this.Controls.Add(this.readBtn);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Lab02_Bai05";
             this.Text = "Lab02_Bai05";
             this.ResumeLayout(false);
