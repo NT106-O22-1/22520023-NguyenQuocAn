@@ -17,8 +17,8 @@ namespace Lab2
         string path = "data_table.db";
         string cs = @"URI=file:" + Application.StartupPath + "\\data_table.db";
 
-        SQLiteConnection con;
-        SQLiteCommand cmd;
+        //SQLiteConnection con;
+        //SQLiteCommand cmd;
         SQLiteDataReader dr;
 
         public Lab02_Bai06()
@@ -43,14 +43,21 @@ namespace Lab2
 
         private void Create_db()
         {
-
-            SQLiteConnection.CreateFile(path);
-            using (var sqlite = new SQLiteConnection(@"Data Source=" + path))
+            if (!System.IO.File.Exists(path))
             {
-                sqlite.Open();
-                string sql = "create table data(IDMA varchar(12) NOT NULL, TenMonAn varchar(30) NOT NULL, UNIQUE (IDMA))";
-                SQLiteCommand command = new SQLiteCommand(sql, sqlite);
-                command.ExecuteNonQuery();
+                SQLiteConnection.CreateFile(path);
+                using (var sqlite = new SQLiteConnection(@"Data Source=" + path))
+                {
+                    sqlite.Open();
+                    string sql = "create table data(IDMA varchar(12) NOT NULL, TenMonAn varchar(30) NOT NULL, UNIQUE (IDMA))";
+                    SQLiteCommand command = new SQLiteCommand(sql, sqlite);
+                    command.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể tạo Database");
+                return;
             }
         }
         private void insertBtn_Click(object sender, EventArgs e)
