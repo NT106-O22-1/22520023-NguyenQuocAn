@@ -1,6 +1,6 @@
-﻿namespace Lab3
+﻿namespace Lab3_Bai02
 {
-    partial class Lab03_Bai01
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Lab03_Bai01";
+            this.Text = "Form1";
         }
 
         #endregion
     }
 }
+
