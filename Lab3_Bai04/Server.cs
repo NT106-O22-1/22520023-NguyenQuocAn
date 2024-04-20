@@ -30,6 +30,8 @@ namespace Lab3_Bai04
         public Server()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
+
             comboBox1.DisplayMember = "TenPhim";
             comboBox2.DisplayMember = "ToString";
         }
