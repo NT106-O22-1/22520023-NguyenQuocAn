@@ -30,8 +30,6 @@
         {
             this.listView_Message = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox_Port = new System.Windows.Forms.TextBox();
             this.button_Listen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -54,25 +52,9 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Received messages";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Port";
-            // 
-            // textBox_Port
-            // 
-            this.textBox_Port.Location = new System.Drawing.Point(116, 60);
-            this.textBox_Port.Name = "textBox_Port";
-            this.textBox_Port.Size = new System.Drawing.Size(120, 26);
-            this.textBox_Port.TabIndex = 3;
-            // 
             // button_Listen
             // 
-            this.button_Listen.Location = new System.Drawing.Point(578, 46);
+            this.button_Listen.Location = new System.Drawing.Point(569, 60);
             this.button_Listen.Name = "button_Listen";
             this.button_Listen.Size = new System.Drawing.Size(104, 54);
             this.button_Listen.TabIndex = 4;
@@ -86,8 +68,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button_Listen);
-            this.Controls.Add(this.textBox_Port);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView_Message);
             this.Name = "Server";
@@ -101,8 +81,6 @@
 
         private System.Windows.Forms.ListView listView_Message;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_Port;
         private System.Windows.Forms.Button button_Listen;
     }
 }
