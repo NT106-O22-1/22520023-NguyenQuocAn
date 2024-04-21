@@ -29,8 +29,6 @@ namespace Lab3_Bai04
         public Client()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
-
             comboBox1.DisplayMember = "TenPhim";
             comboBox2.DisplayMember = "ToString";
         }
@@ -44,7 +42,7 @@ namespace Lab3_Bai04
                 clientSocket.Connect(IPAddress.Parse("127.0.0.1"), 8080);
 
 
-                Invoke(new Action(() => MessageBox.Show("Đã kết nối đến server")));
+                MessageBox.Show("Đã kết nối đến server");
                 byte[] buffer = new byte[1024];
                 int bytesReceived = clientSocket.Receive(buffer);
                 string jsonData = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
@@ -59,7 +57,7 @@ namespace Lab3_Bai04
                     comboBox1.DisplayMember = "TenPhim";
                 }));
 
-                clientSocket.Close();
+                // clientSocket.Close();
             }
             catch (Exception ex)
             {
@@ -126,6 +124,11 @@ namespace Lab3_Bai04
             //tính tiền
             giave = (vevip * giavevip) + (vethuong * giavethuong) + (vevot * giavevot);
             richTextBox_Ve.AppendText($"Tổng tiền: {giave} đồng");
+        }
+
+        private void Client_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            clientSocket.Close();
         }
     }
 }

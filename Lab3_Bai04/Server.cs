@@ -30,8 +30,6 @@ namespace Lab3_Bai04
         public Server()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
-
             comboBox1.DisplayMember = "TenPhim";
             comboBox2.DisplayMember = "ToString";
         }
@@ -69,8 +67,10 @@ namespace Lab3_Bai04
                 socket.Bind(new IPEndPoint(IPAddress.Any, 8080));
                 socket.Listen(5);
                 button_Listen.Enabled = false;
-                listView_Message.Items.Add("Đang lắng nghe...");
-
+                listView_Message.Invoke(new Action(() =>
+                {
+                    listView_Message.Items.Add("Đang lắng nghe...");
+                }));
                 socket.BeginAccept(AcceptCallback, null);
             }
             catch (Exception ex)
@@ -97,7 +97,10 @@ namespace Lab3_Bai04
             try
             {
                 client = socket.EndAccept(ar);
-                listView_Message.Items.Add("Kết nối thành công!");
+                listView_Message.Invoke(new Action(() =>
+                {
+                    listView_Message.Items.Add("Kết nối thành công!");
+                }));
 
                 SendMovieData(client);
 
@@ -123,9 +126,9 @@ namespace Lab3_Bai04
                         byte[] buffer = new byte[1024];
                         int bytesReceive = client.Receive(buffer);
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesReceive);
+                        ListViewItem item = new ListViewItem(message);
                         listView_Message.Invoke(new Action(() =>
                         {
-                            ListViewItem item = new ListViewItem(message);
                             listView_Message.Items.Add(item);
                         }));
                     }

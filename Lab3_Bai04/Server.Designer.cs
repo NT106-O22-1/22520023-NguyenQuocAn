@@ -38,18 +38,20 @@
             // listView_Message
             // 
             this.listView_Message.HideSelection = false;
-            this.listView_Message.Location = new System.Drawing.Point(204, 277);
+            this.listView_Message.Location = new System.Drawing.Point(163, 177);
+            this.listView_Message.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView_Message.Name = "listView_Message";
-            this.listView_Message.Size = new System.Drawing.Size(367, 85);
+            this.listView_Message.Size = new System.Drawing.Size(327, 162);
             this.listView_Message.TabIndex = 0;
             this.listView_Message.UseCompatibleStateImageBehavior = false;
             this.listView_Message.View = System.Windows.Forms.View.List;
             // 
             // button_Listen
             // 
-            this.button_Listen.Location = new System.Drawing.Point(558, 133);
+            this.button_Listen.Location = new System.Drawing.Point(496, 106);
+            this.button_Listen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_Listen.Name = "button_Listen";
-            this.button_Listen.Size = new System.Drawing.Size(93, 38);
+            this.button_Listen.Size = new System.Drawing.Size(83, 30);
             this.button_Listen.TabIndex = 1;
             this.button_Listen.Text = "Listen";
             this.button_Listen.UseVisualStyleBackColor = true;
@@ -58,25 +60,28 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(367, 82);
+            this.comboBox1.Location = new System.Drawing.Point(326, 66);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.Size = new System.Drawing.Size(108, 24);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(367, 153);
+            this.comboBox2.Location = new System.Drawing.Point(326, 122);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 28);
+            this.comboBox2.Size = new System.Drawing.Size(108, 24);
             this.comboBox2.TabIndex = 3;
             // 
             // button_DocFile
             // 
-            this.button_DocFile.Location = new System.Drawing.Point(558, 192);
+            this.button_DocFile.Location = new System.Drawing.Point(496, 154);
+            this.button_DocFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_DocFile.Name = "button_DocFile";
-            this.button_DocFile.Size = new System.Drawing.Size(93, 36);
+            this.button_DocFile.Size = new System.Drawing.Size(83, 29);
             this.button_DocFile.TabIndex = 4;
             this.button_DocFile.Text = "Đọc file";
             this.button_DocFile.UseVisualStyleBackColor = true;
@@ -84,14 +89,15 @@
             // 
             // Server
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(711, 360);
             this.Controls.Add(this.button_DocFile);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button_Listen);
             this.Controls.Add(this.listView_Message);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Server";
             this.Text = "Server";
             this.ResumeLayout(false);
