@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.IO;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Net.Http;
-using Newtonsoft.Json.Linq;
 using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
 
-namespace Lab4_Bai05
+namespace Lab4_Bai07
 {
-    public partial class Form1 : Form
+    public partial class log_in : Form
     {
+        main Main;
+        public static log_in instance;
         private string tokentype;
         private string accesstoken;
         private readonly HttpClient httpClient = new HttpClient
@@ -17,16 +25,28 @@ namespace Lab4_Bai05
             BaseAddress = new Uri(@"https://nt106.uitiot.vn")
         };
 
-        public Form1()
+        public log_in()
         {
             InitializeComponent();
-            urlTb.Text = "https://nt106.uitiot.vn/auth/token";
+            instance = this;
+        }
+        private void log_in_Load(object sender, EventArgs e)
+        {
+            Main = new main();
+            Main.Show();
+            //Main.Enabled = false;
+        }
+
+        private void signUpLb_Click(object sender, EventArgs e)
+        {
+            sign_up sign_Up = new sign_up();
+            sign_Up.ShowDialog();
         }
 
         private async void loginBtn_Click(object sender, EventArgs e)
         {
             string username = usernameTb.Text;
-            string password = passTb.Text;
+            string password = passwdTb.Text;
 
             var formData = new FormUrlEncodedContent(new[]
             {
@@ -46,10 +66,14 @@ namespace Lab4_Bai05
                         tokentype = jsonResponse["token_type"].ToString();
                         accesstoken = jsonResponse["access_token"].ToString();
                     }
-                    richTextBox1.Clear();
-                    richTextBox1.AppendText(tokentype + '\n');
-                    richTextBox1.AppendText(accesstoken + '\n');
-                    richTextBox1.AppendText("\nĐăng nhập thành công");
+
+                    main.instance.welcomeLb.Text = $"Welcome, {username}";
+                    main.instance.welcomeLb.ForeColor = Color.Green;
+                    main.instance.receivedTokenType = tokentype;
+                    main.instance.receivedAccessToken = accesstoken;
+
+                    Main.Enabled = true;
+                    this.Hide();
                 }
                 else
                 {

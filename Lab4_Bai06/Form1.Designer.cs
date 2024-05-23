@@ -42,17 +42,17 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(59, 207);
+            this.richTextBox1.Location = new System.Drawing.Point(59, 188);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(686, 188);
+            this.richTextBox1.Size = new System.Drawing.Size(459, 161);
             this.richTextBox1.TabIndex = 15;
             this.richTextBox1.Text = "";
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(554, 102);
+            this.loginBtn.Location = new System.Drawing.Point(398, 99);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(96, 80);
+            this.loginBtn.Size = new System.Drawing.Size(120, 57);
             this.loginBtn.TabIndex = 14;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = true;
@@ -60,30 +60,31 @@
             // 
             // passTb
             // 
-            this.passTb.Location = new System.Drawing.Point(291, 160);
+            this.passTb.Location = new System.Drawing.Point(214, 134);
             this.passTb.Name = "passTb";
             this.passTb.PasswordChar = '*';
-            this.passTb.Size = new System.Drawing.Size(146, 22);
+            this.passTb.Size = new System.Drawing.Size(163, 22);
             this.passTb.TabIndex = 13;
             // 
             // usernameTb
             // 
-            this.usernameTb.Location = new System.Drawing.Point(278, 104);
+            this.usernameTb.Location = new System.Drawing.Point(214, 99);
             this.usernameTb.Name = "usernameTb";
-            this.usernameTb.Size = new System.Drawing.Size(195, 22);
+            this.usernameTb.Size = new System.Drawing.Size(163, 22);
             this.usernameTb.TabIndex = 12;
             // 
             // urlTb
             // 
-            this.urlTb.Location = new System.Drawing.Point(278, 25);
+            this.urlTb.Location = new System.Drawing.Point(214, 28);
             this.urlTb.Name = "urlTb";
-            this.urlTb.Size = new System.Drawing.Size(216, 22);
+            this.urlTb.ReadOnly = true;
+            this.urlTb.Size = new System.Drawing.Size(304, 22);
             this.urlTb.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(75, 139);
+            this.label3.Location = new System.Drawing.Point(56, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 16);
             this.label3.TabIndex = 10;
@@ -92,7 +93,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(75, 91);
+            this.label2.Location = new System.Drawing.Point(56, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 16);
             this.label2.TabIndex = 9;
@@ -101,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 28);
+            this.label1.Location = new System.Drawing.Point(56, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 16);
             this.label1.TabIndex = 8;
@@ -110,7 +111,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(75, 59);
+            this.label4.Location = new System.Drawing.Point(56, 65);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 16);
             this.label4.TabIndex = 16;
@@ -118,16 +119,17 @@
             // 
             // getURLTb
             // 
-            this.getURLTb.Location = new System.Drawing.Point(278, 59);
+            this.getURLTb.Location = new System.Drawing.Point(214, 62);
             this.getURLTb.Name = "getURLTb";
-            this.getURLTb.Size = new System.Drawing.Size(159, 22);
+            this.getURLTb.ReadOnly = true;
+            this.getURLTb.Size = new System.Drawing.Size(304, 22);
             this.getURLTb.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(584, 403);
             this.Controls.Add(this.getURLTb);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.richTextBox1);
@@ -139,7 +141,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Bài 6";
             this.ResumeLayout(false);
             this.PerformLayout();
 

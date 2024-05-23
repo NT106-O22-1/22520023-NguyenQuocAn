@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-using System.Net;
-using System.Xml.Linq;
 
 namespace Lab4_Bai06
 {
     public partial class Form1 : Form
     {
+        private string tokentype;
+        private string accesstoken;
+        private readonly HttpClient httpClient = new HttpClient
+        {
+            BaseAddress = new Uri(@"https://nt106.uitiot.vn")
+        };
+
         public Form1()
         {
             InitializeComponent();
@@ -26,36 +25,38 @@ namespace Lab4_Bai06
 
         private async void loginBtn_Click(object sender, EventArgs e)
         {
-            var url = urlTb.Text;
-            var url2 = getURLTb.Text;
-            var username = usernameTb.Text;
-            var password = passTb.Text;
+            string username = usernameTb.Text;
+            string password = passTb.Text;
 
-            using (var client = new HttpClient())
+            var formData = new FormUrlEncodedContent(new[]
             {
-                var content = new MultipartFormDataContent
-            {
-                { new StringContent(username), "username" },
-                { new StringContent(password), "password" }
-            };
+                new KeyValuePair<string, string>("username", username),
+                new KeyValuePair<string, string>("password", password)
+            });
 
-                try
+            HttpResponseMessage response = await httpClient.PostAsync("auth/token", formData);
+            using (response)
+            {
+                if (response.IsSuccessStatusCode)
                 {
-                    var response = await client.PostAsync(url, content);
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    var responseObject = JObject.Parse(responseString);
+                    var res = await response.Content.ReadAsStringAsync();
+                    JObject jsonResponse = JObject.Parse(res);
+                    if (jsonResponse["access_token"] != null)
+                    {
+                        tokentype = jsonResponse["token_type"].ToString();
+                        accesstoken = jsonResponse["access_token"].ToString();
+                    }
 
-                    var accessToken = responseObject["access_token"].ToString();
-
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-                    var getUserUrl = url2;
-                    var getUserResponse = await client.GetAsync(getUserUrl);
+                    httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accesstoken);
+                    var getUserUrl = getURLTb.Text;
+                    var getUserResponse = await httpClient.GetAsync(getUserUrl);
                     var getUserResponseString = await getUserResponse.Content.ReadAsStringAsync();
+                    richTextBox1.Clear();
                     richTextBox1.AppendText(getUserResponseString);
                 }
-                catch (HttpRequestException httpExp)
+                else
                 {
-                    richTextBox1.AppendText($"Lỗi kết nối: {httpExp.Message}\n\n");
+                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

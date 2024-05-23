@@ -52,16 +52,13 @@ namespace Lab4_Bai04
 
         private void UpdateProgressBar(int totalMovies, int fetchedMovies)
         {
-            // Calculate progress percentage
             int progressPercentage = (int)((double)fetchedMovies / totalMovies * 100);
 
-            // Ensure progress bar value doesn't exceed its maximum value
             if (progressPercentage > progressBar.Maximum)
             {
                 progressPercentage = progressBar.Maximum;
             }
 
-            // Update progress bar value
             progressBar.Value = progressPercentage;
         }
 
@@ -72,7 +69,7 @@ namespace Lab4_Bai04
             using (var webClient = new WebClient())
             {
                 HtmlWeb web = new HtmlWeb();
-                web.OverrideEncoding = Encoding.UTF8; // Or the appropriate encoding for your document
+                web.OverrideEncoding = Encoding.UTF8;
                 HtmlAgilityPack.HtmlDocument document = web.Load(url);
 
                 var movieNodes = document.DocumentNode.SelectNodes("//div[@class='col-lg-4 col-md-4 col-sm-8 col-xs-16 padding-right-30 padding-left-30 padding-bottom-30']");
@@ -139,7 +136,8 @@ namespace Lab4_Bai04
         private Panel CreateMoviePanel(MovieInfo movieInfo)
         {
             var panel = new Panel();
-            panel.Size = new Size(280, 70); // Set the size according to your preference
+            panel.Size = new Size(542, 70);
+            panel.BorderStyle = BorderStyle.FixedSingle;
 
             var flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Dock = DockStyle.Fill;
@@ -155,7 +153,7 @@ namespace Lab4_Bai04
             flowLayoutPanel.Controls.Add(label);
 
             panel.Controls.Add(flowLayoutPanel);
-            panel.BackColor = Color.Gainsboro;
+            panel.BackColor = Color.WhiteSmoke;
 
             return panel;
         }
@@ -165,7 +163,6 @@ namespace Lab4_Bai04
         {
             if (!string.IsNullOrEmpty(movieInfo.MovieLink))
             {
-                // Open movie link in default web browser
                 System.Diagnostics.Process.Start(movieInfo.MovieLink);
             }
         }

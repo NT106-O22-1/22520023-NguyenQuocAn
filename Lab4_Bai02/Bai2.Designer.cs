@@ -36,9 +36,9 @@
             // 
             // downloadBtn
             // 
-            this.downloadBtn.Location = new System.Drawing.Point(648, 40);
+            this.downloadBtn.Location = new System.Drawing.Point(492, 26);
             this.downloadBtn.Name = "downloadBtn";
-            this.downloadBtn.Size = new System.Drawing.Size(106, 23);
+            this.downloadBtn.Size = new System.Drawing.Size(101, 60);
             this.downloadBtn.TabIndex = 0;
             this.downloadBtn.Text = "Download";
             this.downloadBtn.UseVisualStyleBackColor = true;
@@ -46,23 +46,24 @@
             // 
             // urlTb
             // 
-            this.urlTb.Location = new System.Drawing.Point(44, 29);
+            this.urlTb.Location = new System.Drawing.Point(32, 26);
             this.urlTb.Name = "urlTb";
             this.urlTb.Size = new System.Drawing.Size(432, 22);
             this.urlTb.TabIndex = 1;
             // 
             // pathTb
             // 
-            this.pathTb.Location = new System.Drawing.Point(44, 68);
+            this.pathTb.Location = new System.Drawing.Point(32, 64);
             this.pathTb.Name = "pathTb";
-            this.pathTb.Size = new System.Drawing.Size(391, 22);
+            this.pathTb.Size = new System.Drawing.Size(432, 22);
             this.pathTb.TabIndex = 2;
+            this.pathTb.Text = "D:\\index.html";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(44, 113);
+            this.richTextBox1.Location = new System.Drawing.Point(32, 109);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(602, 274);
+            this.richTextBox1.Size = new System.Drawing.Size(561, 329);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
@@ -70,13 +71,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(622, 450);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.pathTb);
             this.Controls.Add(this.urlTb);
             this.Controls.Add(this.downloadBtn);
             this.Name = "Bai2";
-            this.Text = "Bai2";
+            this.Text = "Bài 2";
             this.ResumeLayout(false);
             this.PerformLayout();
 

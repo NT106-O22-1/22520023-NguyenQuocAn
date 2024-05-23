@@ -38,6 +38,7 @@
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.purchaseBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // readBtn
@@ -160,11 +161,18 @@
             this.label4.Text = "Lưu ý: \"sold\" là những ghế đã bán.\r\nCố tình chọn những ghế này có thể hiện \"Đặt v" +
     "é thành công\"\r\nTuy nhiên sẽ không được tính.";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(196, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(604, 450);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            // 
             // Lab02_Bai05
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.purchaseBtn);
             this.Controls.Add(this.checkedListBox);
@@ -175,9 +183,10 @@
             this.Controls.Add(this.screenCb);
             this.Controls.Add(this.writeBtn);
             this.Controls.Add(this.readBtn);
+            this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Lab02_Bai05";
-            this.Text = "Lab02_Bai05";
+            this.Size = new System.Drawing.Size(800, 450);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,5 +204,6 @@
         private System.Windows.Forms.CheckedListBox checkedListBox;
         private System.Windows.Forms.Button purchaseBtn;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -22,16 +18,36 @@ namespace Lab4_Bai02
 
         private void downloadBtn_Click(object sender, EventArgs e)
         {
-            string url = urlTb.Text;
-            string fileurl = pathTb.Text;
+            using (WebClient webClient = new WebClient())
+            {
+                if (string.IsNullOrEmpty(urlTb.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập link website", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            WebClient myClient = new WebClient();
-            Stream response = myClient.OpenRead(url);
-            myClient.DownloadFile(url, fileurl);
+                if (string.IsNullOrEmpty(pathTb.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đường dẫn tải xuống", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            StreamReader reader = new StreamReader(response);
-            string data = reader.ReadToEnd();
-            richTextBox1.AppendText(data);
+                try
+                {
+                    Stream response = webClient.OpenRead(urlTb.Text);
+                    webClient.DownloadFile(urlTb.Text, pathTb.Text);
+                    string result = File.ReadAllText(pathTb.Text);
+
+                    richTextBox1.Text = result;
+                    MessageBox.Show("Download thành công", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    response.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Có lỗi xảy ra!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

@@ -37,14 +37,14 @@
             // 
             this.szURLtb.Location = new System.Drawing.Point(12, 12);
             this.szURLtb.Name = "szURLtb";
-            this.szURLtb.Size = new System.Drawing.Size(647, 22);
+            this.szURLtb.Size = new System.Drawing.Size(609, 22);
             this.szURLtb.TabIndex = 0;
             // 
             // getBtn
             // 
-            this.getBtn.Location = new System.Drawing.Point(698, 12);
+            this.getBtn.Location = new System.Drawing.Point(636, 12);
             this.getBtn.Name = "getBtn";
-            this.getBtn.Size = new System.Drawing.Size(75, 23);
+            this.getBtn.Size = new System.Drawing.Size(89, 32);
             this.getBtn.TabIndex = 1;
             this.getBtn.Text = "GET";
             this.getBtn.UseVisualStyleBackColor = true;
@@ -52,9 +52,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 40);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 50);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(776, 398);
+            this.richTextBox1.Size = new System.Drawing.Size(713, 414);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
@@ -62,12 +62,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(737, 476);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.getBtn);
             this.Controls.Add(this.szURLtb);
             this.Name = "Bai1";
-            this.Text = "Bai1";
+            this.Text = "Bài 1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
