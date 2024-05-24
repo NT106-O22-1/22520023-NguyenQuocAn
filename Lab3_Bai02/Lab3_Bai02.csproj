@@ -46,17 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lab03_Bai02.cs">
+    <Compile Include="Bai02.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lab03_Bai02.Designer.cs">
-      <DependentUpon>Lab03_Bai02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Lab03_Bai04.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Lab03_Bai04.Designer.cs">
-      <DependentUpon>Lab03_Bai04.cs</DependentUpon>
+    <Compile Include="Bai02.Designer.cs">
+      <DependentUpon>Bai02.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
