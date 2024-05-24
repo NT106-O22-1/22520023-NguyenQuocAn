@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -30,7 +25,7 @@ namespace Lab4_Bai07
                 MessageBox.Show("Vui lòng nhập các trường: username, password, email");
                 return;
             }
-            if (!(emailTb.Text.Contains("@") || emailTb.Text.Contains(".")))
+            if (!(emailTb.Text.Contains("@") && emailTb.Text.Contains(".")))
             {
                 MessageBox.Show("Vui lòng nhập email đúng định dạng.");
                 return;
