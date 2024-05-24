@@ -30,10 +30,17 @@ namespace Lab4_Bai07
                 MessageBox.Show("Vui lòng nhập các trường: username, password, email");
                 return;
             }
-            string s = "";
-            if (maleRadio.Checked) s = "1";
-            if (femaleRadio.Checked) s = "0";
-            var userData = new
+            if (!(emailTb.Text.Contains("@") || emailTb.Text.Contains(".")))
+            {
+                MessageBox.Show("Vui lòng nhập email đúng định dạng.");
+                return;
+            }
+
+            int s = 1;
+            if (maleRadio.Checked) s = 1;
+            if (femaleRadio.Checked) s = 0;
+
+            signupUserData userData = new signupUserData()
             {
                 username = usernameTb.Text,
                 email = emailTb.Text,
@@ -57,14 +64,14 @@ namespace Lab4_Bai07
                     var content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
                     var response = await httpClient.PostAsync(apiUrl, content);
                     string responseContent = await response.Content.ReadAsStringAsync();
-                    
+
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Tạo tài khoản thành công!" + response.StatusCode);
+                        MessageBox.Show("Tạo tài khoản thành công!");
                     }
                     else
                     {
-                        MessageBox.Show($"Status code: {response.StatusCode}\nLỗi xác thực");
+                        MessageBox.Show($"Có lỗi xảy ra!\nStatus code: {response.StatusCode}");
                     }
                     this.Close();
                 }
@@ -80,7 +87,7 @@ namespace Lab4_Bai07
             usernameTb.Clear();
             passwdTb.Clear();
             emailTb.Clear();
-            firstnameTb.Clear(); 
+            firstnameTb.Clear();
             lastnameTb.Clear();
             phoneTb.Clear();
         }

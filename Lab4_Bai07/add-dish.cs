@@ -55,6 +55,11 @@ namespace Lab4_Bai07
             {
                 MessageBox.Show("Bạn đã thêm món ăn thành công");
             }
+            else
+            {
+                MessageBox.Show("Có lỗi xảy ra!");
+            }
+            this.Close();
         }
 
         private void clearBtn_Click(object sender, EventArgs e)

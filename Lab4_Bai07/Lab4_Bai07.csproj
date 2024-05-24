@@ -89,6 +89,7 @@
     <Compile Include="sign-up.Designer.cs">
       <DependentUpon>sign-up.cs</DependentUpon>
     </Compile>
+    <Compile Include="signupUserData.cs" />
     <EmbeddedResource Include="add-dish.resx">
       <DependentUpon>add-dish.cs</DependentUpon>
     </EmbeddedResource>
