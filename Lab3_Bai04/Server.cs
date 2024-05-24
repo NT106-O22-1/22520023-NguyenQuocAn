@@ -141,6 +141,5 @@ namespace Lab3_Bai04
             }
             client.Close();
         }
-
     }
 }
