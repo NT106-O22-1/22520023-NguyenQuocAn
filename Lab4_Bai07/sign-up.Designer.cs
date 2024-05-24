@@ -171,8 +171,8 @@
             // 
             this.languageCb.FormattingEnabled = true;
             this.languageCb.Items.AddRange(new object[] {
-            "vi",
-            "en"});
+            "None",
+            "Việt Nam"});
             this.languageCb.Location = new System.Drawing.Point(114, 192);
             this.languageCb.Name = "languageCb";
             this.languageCb.Size = new System.Drawing.Size(247, 24);
@@ -191,6 +191,8 @@
             // 
             // dateTimePicker
             // 
+            this.dateTimePicker.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker.Location = new System.Drawing.Point(114, 163);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(247, 22);
