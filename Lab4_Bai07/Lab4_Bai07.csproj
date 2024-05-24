@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E0BFB2CD-D224-4300-A247-F591A067CFE1}</ProjectGuid>
+    <ProjectGuid>{8D3423A3-CF75-42B7-A215-ED5EFF41D770}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Lab3</RootNamespace>
-    <AssemblyName>Lab3</AssemblyName>
+    <RootNamespace>Lab4_Bai07</RootNamespace>
+    <AssemblyName>Lab4_Bai07</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,14 +49,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bai02.cs">
+    <Compile Include="add-dish.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bai02.Designer.cs">
-      <DependentUpon>Bai02.cs</DependentUpon>
+    <Compile Include="add-dish.Designer.cs">
+      <DependentUpon>add-dish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dishes.cs" />
+    <Compile Include="DishInfoUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DishInfoUC.Designer.cs">
+      <DependentUpon>DishInfoUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="log-in.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="log-in.Designer.cs">
+      <DependentUpon>log-in.cs</DependentUpon>
+    </Compile>
+    <Compile Include="main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="main.Designer.cs">
+      <DependentUpon>main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseDishes.cs" />
+    <Compile Include="show-random-dish.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="show-random-dish.Designer.cs">
+      <DependentUpon>show-random-dish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sign-up.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sign-up.Designer.cs">
+      <DependentUpon>sign-up.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="add-dish.resx">
+      <DependentUpon>add-dish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DishInfoUC.resx">
+      <DependentUpon>DishInfoUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="log-in.resx">
+      <DependentUpon>log-in.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="main.resx">
+      <DependentUpon>main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +110,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="show-random-dish.resx">
+      <DependentUpon>show-random-dish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sign-up.resx">
+      <DependentUpon>sign-up.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
