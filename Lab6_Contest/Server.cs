@@ -27,6 +27,13 @@ namespace Lab3_Bai04
             public int GiaVeChuan { get; set; }
             public int[] PhongChieu { get; set; }
         }
+
+        class Message
+        {
+            public string message { get; set; }
+            public List<Phim> DanhSachPhim { get; set; }
+        }
+
         public Server()
         {
             InitializeComponent();
@@ -81,8 +88,14 @@ namespace Lab3_Bai04
 
         private void SendMovieData(Socket clientSocket)
         {
+            Message message = new Message()
+            {
+                message = "init",
+                DanhSachPhim = DanhSachPhim
+            };
+
             // Chuyển danh sách phim sang dạng JSON
-            string jsonData = JsonConvert.SerializeObject(DanhSachPhim);
+            string jsonData = JsonConvert.SerializeObject(message);
 
             // Chuyển dữ liệu sang mảng byte
             byte[] data = Encoding.UTF8.GetBytes(jsonData);
