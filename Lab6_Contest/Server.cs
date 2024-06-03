@@ -10,35 +10,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO;
 using Newtonsoft.Json;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Lab3_Bai04
 {
     public partial class Server : Form
     {
-        private Socket socket;
-        private Socket client;
+        IPEndPoint IP;
+        private Socket server;
+        private List<Socket> clientList;
+
         List<Phim> DanhSachPhim = new List<Phim>();
         class Phim
         {
-            public string TenPhim { get; set; }
-            public int GiaVeChuan { get; set; }
-            public int[] PhongChieu { get; set; }
+            public string ten { get; set; }
+            public int giavechuan { get; set; }
+            public int[] phongchieu { get; set; }
            
-        }
-
-        class Message
-        {
-            public string message { get; set; }
-            public List<Phim> DanhSachPhim { get; set; }
         }
 
         public Server()
         {
             InitializeComponent();
-            comboBox1.DisplayMember = "TenPhim";
+            comboBox1.DisplayMember = "ten";
             comboBox2.DisplayMember = "ToString";
         }
 
@@ -65,93 +61,106 @@ namespace Lab3_Bai04
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Phim selectedPhim = (Phim)comboBox1.SelectedItem;
-            comboBox2.DataSource = selectedPhim.PhongChieu;
+            comboBox2.DataSource = selectedPhim.phongchieu;
         }
+
         private void button_Listen_Click(object sender, EventArgs e)
         {
+            clientList = new List<Socket>();
+            // IP: ip addr server
+            IP = new IPEndPoint(IPAddress.Any, 9999);
+            
             try
             {
-                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                socket.Bind(new IPEndPoint(IPAddress.Any, 8080));
-                socket.Listen(5);
-                button_Listen.Enabled = false;
-                listView_Message.Invoke(new Action(() =>
-                {
-                    listView_Message.Items.Add("Đang lắng nghe...");
-                }));
-                socket.BeginAccept(AcceptCallback, null);
+                server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+                server.Bind(IP);
+                WriteToLog("Start listening...");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
-        }
 
-        private void SendMovieData(Socket clientSocket)
-        {
-            Message message = new Message()
-            {
-                message = "init",
-                DanhSachPhim = DanhSachPhim
-            };
-
-            // Chuyển danh sách phim sang dạng JSON
-            string jsonData = JsonConvert.SerializeObject(message);
-
-            // Chuyển dữ liệu sang mảng byte
-            byte[] data = Encoding.UTF8.GetBytes(jsonData);
-            // Gửi dữ liệu đến client
-            clientSocket.Send(data);
-        }
-
-        private void AcceptCallback(IAsyncResult ar)
-        {
-            try
-            {
-                client = socket.EndAccept(ar);
-                listView_Message.Invoke(new Action(() =>
-                {
-                    listView_Message.Items.Add("Kết nối thành công!");
-                }));
-
-                SendMovieData(client);
-
-                Thread thread = new Thread(HandleClient);
-                thread.Start();
-
-                socket.BeginAccept(AcceptCallback, null);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
-        }
-
-        private void HandleClient()
-        {
-            while (true)
+            Thread Listen = new Thread(() =>
             {
                 try
                 {
                     while (true)
                     {
-                        byte[] buffer = new byte[1024];
-                        int bytesReceive = client.Receive(buffer);
-                        string message = Encoding.UTF8.GetString(buffer, 0, bytesReceive);
-                        ListViewItem item = new ListViewItem(message);
-                        listView_Message.Invoke(new Action(() =>
-                        {
-                            listView_Message.Items.Add(item);
-                        }));
+                        server.Listen(100);
+                        Socket client = server.Accept();
+                        clientList.Add(client);
+                        client.Send(Serialize(JsonConvert.SerializeObject(DanhSachPhim)));
+                        WriteToLog("A client joined.");
+
+                        Thread receive = new Thread(Receive);
+                        receive.IsBackground = true;
+                        receive.Start(client);
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show("Lỗi: " + ex.Message);
-                    break;
+                    IP = new IPEndPoint(IPAddress.Any, 9999);
+                    server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+                }
+            });
+            Listen.IsBackground = true;
+            Listen.Start();
+        }
+
+        void Receive(object obj)
+        {
+            Socket client = obj as Socket;
+            try
+            {
+                while (true)
+                {
+                    byte[] buffer = new byte[1024];
+                    int bytesReceived = client.Receive(buffer);
+                    string jsonData = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
+
+                    List<Phim> danhSachPhim = JsonConvert.DeserializeObject<List<Phim>>(jsonData);
+
+                    MemoryStream stream = new MemoryStream();
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    foreach (Socket item in clientList)
+                    {
+                        if (item != null)
+                        {
+                            string mesage = JsonConvert.SerializeObject(danhSachPhim);
+                            item.Send(Serialize(mesage));
+                        }
+                    }
                 }
             }
-            client.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                clientList.Remove(client);
+                client.Close();
+            }
+        }
+
+        byte[] Serialize(object obj)
+        {
+            MemoryStream stream = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            formatter.Serialize(stream, obj);
+
+            return stream.ToArray();
+        }
+
+        private void WriteToLog(string msg)
+        {
+            if(listView_Message.InvokeRequired)
+            {
+                listView_Message.Invoke(new Action(() =>
+                {
+                    listView_Message.Items.Add(msg);
+                }));
+            }
         }
     }
 }

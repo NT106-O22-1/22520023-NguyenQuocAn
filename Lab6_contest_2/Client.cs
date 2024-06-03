@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,8 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Lab6_contest_2;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using static System.Windows.Forms.AxHost;
 
 namespace Lab2
 {
@@ -32,16 +27,9 @@ namespace Lab2
             serverIP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9999);
         }
 
-        public class Item
-        {
-            public string ten;
-            public long giavechuan;
-            public List<int> phongchieu;
-        }
-
         List<Item> items = new List<Item>();
-        
 
+        #region logic đặt vé
         static List<List<string>> checkedValues = new List<List<string>>();
         static List<List<int>> checkedValuesIndex = new List<List<int>>();
         static long[] resStoring = new long[1001];
@@ -254,8 +242,16 @@ namespace Lab2
             fs.Close();
         }
 
+        #endregion
+
         private void connectBtn_Click(object sender, EventArgs e)
         {
+            if (nameTb.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tên client!");
+                return;
+            }
+
             try
             {
                 client = new TcpClient();
@@ -263,7 +259,9 @@ namespace Lab2
             }
             catch
             {
-                MessageBox.Show("Err");
+                MessageBox.Show("Can not connect to the server!");
+                this.Close();
+                return;
             }
 
             NetworkStream stream = client.GetStream();
@@ -309,23 +307,15 @@ namespace Lab2
 
         private void update_movie_list (Packet response)
         {
-            //List<Item> items = response.movieList;
+            items = response.movieList;
             List<int> tmp = new List<int>();
             int so_phim = 0, so_phong_chieu;
 
             foreach (Item item in items)
             {
-                try
-                {
-                    movieCb.Items.Add(item.ten);
-                    tmp.Add(item.phongchieu.Count);
-                    so_phim++;
-                }
-                catch
-                {
-                    MessageBox.Show("Kiểm tra định dạng file JSON!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                movieCb.Items.Add(item.ten);
+                tmp.Add(item.phongchieu.Count);
+                so_phim++;
             }
             so_phong_chieu = tmp.Max();
             int n = CantorPairing(so_phim, so_phong_chieu) + 1;
@@ -338,11 +328,13 @@ namespace Lab2
         }
         private void lock_ui(Packet response)
         {
-
+            purchaseBtn.Enabled = false;
+            MessageBox.Show("Quầy đã bị khoá");
         }
         private void unlock_ui(Packet response)
         {
-
+            purchaseBtn.Enabled = true;
+            MessageBox.Show("Quầy đã được mở");
         }
 
         private void sendToServer(Packet message)

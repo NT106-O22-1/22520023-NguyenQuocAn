@@ -33,6 +33,7 @@
             this.button_Open = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button_Connect = new System.Windows.Forms.Button();
+            this.toControlTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -51,6 +52,7 @@
             this.button_Closed.TabIndex = 1;
             this.button_Closed.Text = "Đóng quầy";
             this.button_Closed.UseVisualStyleBackColor = true;
+            this.button_Closed.Click += new System.EventHandler(this.button_Closed_Click);
             // 
             // button_Open
             // 
@@ -60,6 +62,7 @@
             this.button_Open.TabIndex = 2;
             this.button_Open.Text = "Mở quầy";
             this.button_Open.UseVisualStyleBackColor = true;
+            this.button_Open.Click += new System.EventHandler(this.button_Open_Click);
             // 
             // textBox1
             // 
@@ -80,11 +83,19 @@
             this.button_Connect.UseVisualStyleBackColor = true;
             this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
             // 
+            // toControlTb
+            // 
+            this.toControlTb.Location = new System.Drawing.Point(466, 114);
+            this.toControlTb.Name = "toControlTb";
+            this.toControlTb.Size = new System.Drawing.Size(149, 22);
+            this.toControlTb.TabIndex = 5;
+            // 
             // Form_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 450);
+            this.Controls.Add(this.toControlTb);
             this.Controls.Add(this.button_Connect);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_Open);
@@ -104,5 +115,6 @@
         private System.Windows.Forms.Button button_Open;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button_Connect;
+        private System.Windows.Forms.TextBox toControlTb;
     }
 }

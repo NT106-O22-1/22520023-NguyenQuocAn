@@ -1,73 +1,108 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace Lab3_Bai04
 {
     public partial class Client : Form
     {
-        private Socket clientSocket;
+        private Socket client;
 
         List<Phim> DanhSachPhim = new List<Phim>();
 
         class Phim
         {
-            public string TenPhim { get; set; }
-            public int GiaVeChuan { get; set; }
-            public int[] PhongChieu { get; set; }
+            public string ten { get; set; }
+            public int giavechuan { get; set; }
+            public int[] phongchieu { get; set; }
         }
         public Client()
         {
             InitializeComponent();
-            comboBox1.DisplayMember = "TenPhim";
+            comboBox1.DisplayMember = "ten";
             comboBox2.DisplayMember = "ToString";
         }
 
         private void button_Connect_Click(object sender, EventArgs e)
         {
+            if (clientNameTb.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tên của quầy");
+                return;
+            }
+
             try
             {
-                clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-                clientSocket.Connect(IPAddress.Parse("127.0.0.1"), 8080);
-
+                client.Connect(IPAddress.Parse("127.0.0.1"), 9999);
 
                 MessageBox.Show("Đã kết nối đến server");
-                byte[] buffer = new byte[1024];
-                int bytesReceived = clientSocket.Receive(buffer);
-                string jsonData = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
-
-                // Chuyển dữ liệu JSON sang danh sách phim
-                List<Phim> danhSachPhim = JsonConvert.DeserializeObject<List<Phim>>(jsonData);
-
-                // Hiển thị danh sách phim trong comboBox
-                comboBox1.Invoke(new Action(() =>
-                {
-                    comboBox1.DataSource = danhSachPhim;
-                    comboBox1.DisplayMember = "TenPhim";
-                }));
-
-                // clientSocket.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
+
+            Thread listen = new Thread(Receive);
+            listen.IsBackground = true;
+            listen.Start();
+        }
+
+        // nhan tin
+        void Receive()
+        {
+            try
+            {
+                while (true)
+                {
+                    byte[] buffer = new byte[1024];
+                    int bytesReceived = client.Receive(buffer);
+                    string jsonData = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
+
+                    List<Phim> danhSachPhim = JsonConvert.DeserializeObject<List<Phim>>(jsonData);
+
+                    if (danhSachPhim[0].ten == clientNameTb.Text && danhSachPhim[0].giavechuan == 1)
+                    {
+                        button_DatVe.Enabled = false;
+                        MessageBox.Show("Quầy đã bị khoá!");
+                    }
+                    else if (danhSachPhim[0].ten == clientNameTb.Text && danhSachPhim[0].giavechuan == 2)
+                    {
+                        button_DatVe.Enabled = true;
+                        MessageBox.Show("Quầy đã được mở khoá!");
+                    }
+                    else
+                    {
+                        foreach (Phim phim in danhSachPhim)
+                        {
+                            if (comboBox1.InvokeRequired)
+                            {
+                                comboBox1.Invoke(new Action(() => {
+                                    comboBox1.Items.Add(phim.ten.ToString());
+                                }));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                client.Close();
+            }
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Phim selectedPhim = (Phim)comboBox1.SelectedItem;
-            comboBox2.DataSource = selectedPhim.PhongChieu;
+            comboBox2.DataSource = selectedPhim.phongchieu;
         }
 
         private void button_DatVe_Click(object sender, EventArgs e)
@@ -85,7 +120,7 @@ namespace Lab3_Bai04
             string[] VeVot = { "GheA1", "GheA5", "GheB1", "GheB5", "GheC1", "GheC5" };
             string[] VeThuong = { "GheA2", "GheA3", "GheA4", "GheC2", "GheC3", "GheC4" };
 
-            int giavechuan = selectedPhim.GiaVeChuan;
+            int giavechuan = selectedPhim.giavechuan;
             long giavevip = giavechuan * 2;
             long giavevot = giavechuan / 4;
             long giavethuong = giavechuan;
@@ -128,7 +163,7 @@ namespace Lab3_Bai04
 
         private void Client_FormClosed(object sender, FormClosedEventArgs e)
         {
-            clientSocket.Close();
+            client.Close();
         }
     }
 }

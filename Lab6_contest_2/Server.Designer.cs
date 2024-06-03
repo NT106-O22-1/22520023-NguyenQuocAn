@@ -31,6 +31,7 @@
             this.button_start_server = new System.Windows.Forms.Button();
             this.readJsonBtn = new System.Windows.Forms.Button();
             this.movieCb = new System.Windows.Forms.ComboBox();
+            this.Log = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // button_start_server
@@ -61,11 +62,21 @@
             this.movieCb.Size = new System.Drawing.Size(121, 24);
             this.movieCb.TabIndex = 2;
             // 
+            // Log
+            // 
+            this.Log.HideSelection = false;
+            this.Log.Location = new System.Drawing.Point(52, 118);
+            this.Log.Name = "Log";
+            this.Log.Size = new System.Drawing.Size(475, 295);
+            this.Log.TabIndex = 3;
+            this.Log.UseCompatibleStateImageBehavior = false;
+            // 
             // Server
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Log);
             this.Controls.Add(this.movieCb);
             this.Controls.Add(this.readJsonBtn);
             this.Controls.Add(this.button_start_server);
@@ -80,5 +91,6 @@
         private System.Windows.Forms.Button button_start_server;
         private System.Windows.Forms.Button readJsonBtn;
         private System.Windows.Forms.ComboBox movieCb;
+        private System.Windows.Forms.ListView Log;
     }
 }

@@ -29,6 +29,8 @@ namespace Lab6_contest_2
             clientListener.IsBackground = true;
             clientListener.Start();
 
+            WriteToLog("Listening...");
+
             this.button_start_server.Enabled = false;
         }
         private void Listen()
@@ -78,30 +80,48 @@ namespace Lab6_contest_2
                             unlock_client(user, request);
                             break;
                     }
+
                 }
             }
-
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("kosaksaosa");
+                client.Close();
+                MessageBox.Show(e.ToString());
             }
         }
 
         private void send_movie_list(User user, Packet request)
         {
-            Packet message = new Packet(0);
+            request.movieList = items;
 
-            sendSpecific(user, message);
+            foreach (User usr in userList)
+            {
+                sendSpecific(usr, request);
+            }
+
+            WriteToLog($"{request.Name} joined");
         }
 
         private void lock_client(User user, Packet request)
         {
-
+            foreach (User usr in userList)
+            {
+                if (usr != user)
+                {
+                    sendSpecific(usr, request);
+                }
+            }
         }
 
         private void unlock_client(User user, Packet request)
         {
-
+            foreach (User usr in userList)
+            {
+                if (usr != user)
+                {
+                    sendSpecific(usr, request);
+                }
+            }
         }
         private void sendSpecific(User user, Object message)
         {
@@ -127,12 +147,6 @@ namespace Lab6_contest_2
             {
                 listener.Stop();
             }
-        }
-        public class Item
-        {
-            public string ten;
-            public long giavechuan;
-            public List<int> phongchieu;
         }
 
         static List<Item> items = new List<Item>();
@@ -170,5 +184,20 @@ namespace Lab6_contest_2
                 }
             }
         }
+        public void WriteToLog(string line)
+        {
+            if (Log.InvokeRequired)
+            {
+                Log.Invoke(new Action(() =>
+                {
+                    Log.Items.Add(string.Format("{0}: {1}", DateTime.Now.ToString("HH:mm"), line));
+                }));
+            }
+            else
+            {
+                Log.Items.Add(string.Format("{0}: {1}", DateTime.Now.ToString("HH:mm"), line));
+            }
+        }
+
     }
 }

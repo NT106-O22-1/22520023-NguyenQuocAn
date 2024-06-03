@@ -38,6 +38,7 @@
             this.purchaseBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.connectBtn = new System.Windows.Forms.Button();
+            this.nameTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // writeBtn
@@ -159,11 +160,19 @@
             this.connectBtn.UseVisualStyleBackColor = true;
             this.connectBtn.Click += new System.EventHandler(this.connectBtn_Click);
             // 
+            // nameTb
+            // 
+            this.nameTb.Location = new System.Drawing.Point(35, 352);
+            this.nameTb.Name = "nameTb";
+            this.nameTb.Size = new System.Drawing.Size(100, 22);
+            this.nameTb.TabIndex = 11;
+            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.nameTb);
             this.Controls.Add(this.connectBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.purchaseBtn);
@@ -193,5 +202,6 @@
         private System.Windows.Forms.Button purchaseBtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button connectBtn;
+        private System.Windows.Forms.TextBox nameTb;
     }
 }
