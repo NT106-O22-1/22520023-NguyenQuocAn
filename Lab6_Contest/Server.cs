@@ -26,6 +26,7 @@ namespace Lab3_Bai04
             public string TenPhim { get; set; }
             public int GiaVeChuan { get; set; }
             public int[] PhongChieu { get; set; }
+           
         }
         public Server()
         {
@@ -86,11 +87,9 @@ namespace Lab3_Bai04
 
             // Chuyển dữ liệu sang mảng byte
             byte[] data = Encoding.UTF8.GetBytes(jsonData);
-
             // Gửi dữ liệu đến client
             clientSocket.Send(data);
         }
-
 
         private void AcceptCallback(IAsyncResult ar)
         {

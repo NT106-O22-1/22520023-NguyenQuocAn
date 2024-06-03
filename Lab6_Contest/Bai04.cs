@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab6_Contest;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,12 @@ namespace Lab3_Bai04
         {
             Form client = new Client();
             client.Show();
+        }
+
+        private void button_Admin_Click(object sender, EventArgs e)
+        {
+            Form Admin = new Form_Admin();
+            Admin.Show();
         }
     }
 }
