@@ -37,7 +37,7 @@ namespace Lab5_Bai01
                 smtpClient.Send(message);
                 MessageBox.Show("Da gui mail thanh cong");
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Gui khong thanh cong");
             }
