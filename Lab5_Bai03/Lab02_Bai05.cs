@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,7 +25,7 @@ namespace Lab2
         public class Item
         {
             public string ten;
-            public string imageUrl;
+            public string posterUrl;
             public long giavechuan;
             public List<int> phongchieu;
         }
@@ -138,43 +133,19 @@ namespace Lab2
             return res;
         }
 
-        static byte[] ConvertImageToByte(string imageUrl)
-        {
-            try
-            {
-                using (WebClient webClient = new WebClient())
-                {
-
-                }
-            }
-        }
-
         private void send_Email(long res, string picked)
         {
-            string imageUrl = "";
+            string posterUrl = "";
+            Item selectedItem = new Item();
             foreach (Item item in items)
             {
                 if (item.ten == movieCb.Text)
                 {
-                    imageUrl = item.imageUrl;
+                    selectedItem = item;
                 }
             }
 
-            byte[] imageBytes;
-            using (var httpClient = new HttpClient())
-            {
-                imageBytes = httpClient.GetByteArrayAsync(imageUrl);
-            }
-
-            var image = new MimePart("image", "jpeg")
-            {
-                Content = new MimeContent(new MemoryStream(imageBytes)),
-                ContentId = MimeUtils.GenerateMessageId(),
-                ContentDisposition = new ContentDisposition(ContentDisposition.Inline),
-                ContentTransferEncoding = ContentEncoding.Base64,
-                FileName = Path.GetFileName(imageUrl)
-            };
-
+            posterUrl = selectedItem.posterUrl;
 
             var smtpClient = new MailKit.Net.Smtp.SmtpClient();
             smtpClient.Connect("smtp.gmail.com", 465, true);
@@ -185,15 +156,15 @@ namespace Lab2
             message.Subject = "Thư xác nhận đặt vé";
             message.Body = new TextPart("html")
             {
-                Text = $@"<body>
-                            <p>
-                                <span>{nameTb.Text} đã đặt thành công vé xem phim {movieCb.Text}</span>
+                Text = $@"<body style=""margin: auto; width: 90%; text-align: center; padding: 10px"">
+                            <p style=""font-size: 18px"">
+                                <span style=""font-weight: bold"">Cảm ơn {nameTb.Text}, bạn đã đặt thành công vé xem phim {selectedItem.ten}</span>
                                 <br>
-                                <span>Số tiền đã thanh toán: {res.ToString()}</span>
+                                <span>Số tiền đã thanh toán: {res}</span>
                                 <br>
                                 <span>Các ghế đã chọn: {picked}</span>
-                                <img src=""cid:{image.ContentId}"" alt=""Embedded Image"" />
                             </p>
+                            <img src=""{posterUrl}"" alt=""Embedded Image"" />
                         </body>"
             };
             smtpClient.Send(message);
