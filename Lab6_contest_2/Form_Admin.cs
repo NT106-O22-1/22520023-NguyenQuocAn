@@ -13,7 +13,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Lab6_Contest
 {
@@ -40,6 +39,8 @@ namespace Lab6_Contest
                 client.Connect(serverIP);
                 button_Closed.Enabled = true;
                 button_Open.Enabled = true;
+                button_Connect.Text = "Connected to server";
+                button_Connect.Enabled = false;
             }
             catch
             {
@@ -52,38 +53,64 @@ namespace Lab6_Contest
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream);
 
-            sendToServer(new Packet(0));
-
             Thread listen = new Thread(Receive);
             listen.IsBackground = true;
             listen.Start();
         }
+
         private void Receive()
         {
-            try
-            {
-                string responseInJson = string.Empty;
-                while (true)
-                {
-                    responseInJson = reader.ReadLine();
-
-                    Packet response = JsonConvert.DeserializeObject<Packet>(responseInJson);
-                }
-            }
-            catch
-            {
-                client.Close();
-            }
+            //try
+            //{
+            //    string responseInJson = string.Empty;
+            //    while (true)
+            //    {
+            //        responseInJson = reader.ReadLine();
+            //    }
+            //}
+            //catch
+            //{
+            //    client.Close();
+            //}
         }
 
         private void button_Closed_Click(object sender, EventArgs e)
         {
-            sendToServer(new Packet(1)
+            if (nameClientTb.Text == "")
             {
-                Name = nameClientTb.Text,
+                MessageBox.Show("Vui lòng nhập tên quầy muốn thao tác");
+                return;
+            }
+            List<Item> req = new List<Item>();
+            req.Add(new Item
+            {
+                ten = nameClientTb.Text,
+                giavechuan = 1,
+                phongchieu = new List<int> { 1 }
             });
+
+            sendToServer(req);
         }
-        private void sendToServer(Packet message)
+
+        private void button_Open_Click(object sender, EventArgs e)
+        {
+            if (nameClientTb.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tên quầy muốn thao tác");
+                return;
+            }
+            List<Item> req = new List<Item>();
+            req.Add(new Item
+            {
+                ten = nameClientTb.Text,
+                giavechuan = 2,
+                phongchieu = new List<int> { 1 }
+            });
+
+            sendToServer(req);
+        }
+
+        private void sendToServer(List<Item> message)
         {
             string messageInJson = JsonConvert.SerializeObject(message);
             try
@@ -91,18 +118,10 @@ namespace Lab6_Contest
                 writer.WriteLine(messageInJson);
                 writer.Flush();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed to send data to server!");
+                MessageBox.Show(ex.Message);
             }
-        }
-
-        private void button_Open_Click(object sender, EventArgs e)
-        {
-            sendToServer(new Packet(2)
-            {
-                Name = nameClientTb.Text,
-            });
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Lab2
         private StreamReader reader;
         private StreamWriter writer;
         private IPEndPoint serverIP;
+
         public Client()
         {
             InitializeComponent();
@@ -256,6 +257,12 @@ namespace Lab2
             {
                 client = new TcpClient();
                 client.Connect(serverIP);
+
+                connectBtn.Enabled = false;
+                connectBtn.Text = "Connected to server";
+                nameTb.Enabled = false;
+                groupBox1.Enabled = true;
+                purchaseBtn.Enabled = true;
             }
             catch
             {
@@ -268,12 +275,11 @@ namespace Lab2
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream);
 
-            sendToServer(new Packet(0));
-
             Thread listen = new Thread(Receive);
             listen.IsBackground = true;
             listen.Start();
         }
+
         private void Receive()
         {
             try
@@ -283,19 +289,42 @@ namespace Lab2
                 {
                     responseInJson = reader.ReadLine();
 
-                    Packet response = JsonConvert.DeserializeObject<Packet>(responseInJson);
-
-                    switch (response.Code)
+                    if (responseInJson != null)
                     {
-                        case 0:
-                            update_movie_list(response);
-                            break;
-                        case 1:
-                            lock_ui(response);
-                            break;
-                        case 2:
-                            unlock_ui(response);
-                            break;
+                        List<Item> response = JsonConvert.DeserializeObject<List<Item>>(responseInJson);
+
+                        if (response[0].giavechuan == 1 && response[0].ten == nameTb.Text)
+                        {
+                            MessageBox.Show("Quầy đã bị khoá");
+                            purchaseBtn.Enabled = false;
+                        }
+                        else if (response[0].giavechuan == 2 && response[0].ten == nameTb.Text)
+                        {
+                            MessageBox.Show("Quầy đã được mở");
+                            purchaseBtn.Enabled = true;
+                        }
+                        else
+                        {
+                            items = response;
+                            List<int> tmp = new List<int>();
+                            int so_phim = 0, so_phong_chieu;
+
+                            foreach (Item item in items)
+                            {
+                                AddToMovieCb(item.ten);
+                                tmp.Add(item.phongchieu.Count);
+                                so_phim++;
+                            }
+
+                            so_phong_chieu = tmp.Max();
+                            int n = CantorPairing(so_phim, so_phong_chieu) + 1;
+
+                            for (int i = 0; i < n; i++)
+                            {
+                                checkedValues.Add(new List<string>());
+                                checkedValuesIndex.Add(new List<int>());
+                            }
+                        }
                     }
                 }
             }
@@ -305,49 +334,18 @@ namespace Lab2
             }
         }
 
-        private void update_movie_list (Packet response)
+        private void AddToMovieCb(string s)
         {
-            items = response.movieList;
-            List<int> tmp = new List<int>();
-            int so_phim = 0, so_phong_chieu;
-
-            foreach (Item item in items)
+            if (movieCb.InvokeRequired)
             {
-                movieCb.Items.Add(item.ten);
-                tmp.Add(item.phongchieu.Count);
-                so_phim++;
+                movieCb.Invoke(new Action(() =>
+                {
+                    movieCb.Items.Add(s);
+                }));
             }
-            so_phong_chieu = tmp.Max();
-            int n = CantorPairing(so_phim, so_phong_chieu) + 1;
-
-            for (int i = 0; i < n; i++)
+            else
             {
-                checkedValues.Add(new List<string>());
-                checkedValuesIndex.Add(new List<int>());
-            }
-        }
-        private void lock_ui(Packet response)
-        {
-            purchaseBtn.Enabled = false;
-            MessageBox.Show("Quầy đã bị khoá");
-        }
-        private void unlock_ui(Packet response)
-        {
-            purchaseBtn.Enabled = true;
-            MessageBox.Show("Quầy đã được mở");
-        }
-
-        private void sendToServer(Packet message)
-        {
-            string messageInJson = JsonConvert.SerializeObject(message);
-            try
-            {
-                writer.WriteLine(messageInJson);
-                writer.Flush();
-            }
-            catch
-            {
-                MessageBox.Show("Failed to send data to server!");
+                movieCb.Items.Add(s);
             }
         }
     }

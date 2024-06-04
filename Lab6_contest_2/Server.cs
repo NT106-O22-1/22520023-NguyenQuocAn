@@ -13,11 +13,14 @@ namespace Lab6_contest_2
 {
     public partial class Server : Form
     {
-        private List<User> userList = new List<User>();
         private TcpListener listener;
+        private List<User> userList = new List<User>();
+        private List<Item> items = new List<Item>();
+
         public Server()
         {
             InitializeComponent();
+            button_start_server.Enabled = false;
         }
 
         private void button_start_server_Click(object sender, EventArgs e)
@@ -30,8 +33,8 @@ namespace Lab6_contest_2
             clientListener.Start();
 
             WriteToLog("Listening...");
-
-            this.button_start_server.Enabled = false;
+            button_start_server.Enabled = false;
+            button_start_server.Text = "Listening...";
         }
         private void Listen()
         {
@@ -58,6 +61,8 @@ namespace Lab6_contest_2
             TcpClient client = obj as TcpClient;
             User user = new User(client);
             userList.Add(user);
+            WriteToLog("A client joined.");
+            sendSpecific(user, items);
 
             try
             {
@@ -66,91 +71,19 @@ namespace Lab6_contest_2
                 {
                     requestInJson = user.Reader.ReadLine();
 
-                    Packet request = JsonConvert.DeserializeObject<Packet>(requestInJson);
-
-                    switch (request.Code)
+                    if (requestInJson != null)
                     {
-                        case 0:
-                            send_movie_list(user, request);
-                            break;
-                        case 1:
-                            lock_client(user, request);
-                            break;
-                        case 2:
-                            unlock_client(user, request);
-                            break;
+                        List<Item> request = JsonConvert.DeserializeObject<List<Item>>(requestInJson);
+                        sendAll(userList, request);
                     }
-
                 }
-            }
-            catch (Exception e)
-            {
-                client.Close();
-                MessageBox.Show(e.ToString());
-            }
-        }
-
-        private void send_movie_list(User user, Packet request)
-        {
-            request.movieList = items;
-
-            foreach (User usr in userList)
-            {
-                sendSpecific(usr, request);
-            }
-
-            WriteToLog($"{request.Name} joined");
-        }
-
-        private void lock_client(User user, Packet request)
-        {
-            foreach (User usr in userList)
-            {
-                if (usr != user)
-                {
-                    sendSpecific(usr, request);
-                }
-            }
-        }
-
-        private void unlock_client(User user, Packet request)
-        {
-            foreach (User usr in userList)
-            {
-                if (usr != user)
-                {
-                    sendSpecific(usr, request);
-                }
-            }
-        }
-        private void sendSpecific(User user, Object message)
-        {
-            string messageInJson = JsonConvert.SerializeObject(message);
-            try
-            {
-                user.Writer.WriteLine(messageInJson);
-                user.Writer.Flush();
             }
             catch
             {
-                MessageBox.Show("Cannot send data to user: " + user.Username);
+                client.Close();
             }
         }
-
-        private void Server_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            foreach (User user in userList)
-            {
-                user.Client.Close();
-            }
-            if (listener != null)
-            {
-                listener.Stop();
-            }
-        }
-
-        static List<Item> items = new List<Item>();
-
+        
         private void readJsonBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -165,6 +98,8 @@ namespace Lab6_contest_2
 
             string json = sr.ReadToEnd();
             items = JsonConvert.DeserializeObject<List<Item>>(json);
+
+            button_start_server.Enabled = true;
 
             List<int> tmp = new List<int>();
             int so_phim = 0;
@@ -184,6 +119,30 @@ namespace Lab6_contest_2
                 }
             }
         }
+
+        private void sendSpecific(User usr, Object message)
+        {
+            string messageInJson = JsonConvert.SerializeObject(message);
+            if (usr != null)
+            {
+                usr.Writer.WriteLine(messageInJson);
+                usr.Writer.Flush();
+            }
+        }
+
+        private void sendAll(List<User> userList, Object message)
+        {
+            string messageInJson = JsonConvert.SerializeObject(message);
+            foreach (User usr in userList)
+            {
+                if (usr != null)
+                {
+                    usr.Writer.WriteLine(messageInJson);
+                    usr.Writer.Flush();
+                }
+            }
+        }
+
         public void WriteToLog(string line)
         {
             if (Log.InvokeRequired)
@@ -199,5 +158,16 @@ namespace Lab6_contest_2
             }
         }
 
+        private void Server_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (User user in userList)
+            {
+                user.Client.Close();
+            }
+            if (listener != null)
+            {
+                listener.Stop();
+            }
+        }
     }
 }
