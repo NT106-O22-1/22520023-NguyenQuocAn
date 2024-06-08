@@ -155,5 +155,12 @@ namespace Lab5_Bai05
             SendEmail sendEmail = new SendEmail(usernameTb.Text, pwTb.Text, smtpTb.Text, (int)smtpNum.Value);
             sendEmail.Show();
         }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            main main_form = new main();
+            main_form.Show();
+            this.Hide();
+        }
     }
 }

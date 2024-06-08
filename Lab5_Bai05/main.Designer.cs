@@ -159,6 +159,7 @@
             // 
             this.pwTb.Location = new System.Drawing.Point(104, 52);
             this.pwTb.Name = "pwTb";
+            this.pwTb.PasswordChar = '*';
             this.pwTb.Size = new System.Drawing.Size(223, 22);
             this.pwTb.TabIndex = 23;
             // 
@@ -207,6 +208,7 @@
             this.logoutBtn.Text = "Đăng xuất";
             this.logoutBtn.UseVisualStyleBackColor = true;
             this.logoutBtn.Visible = false;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
             // refreshBtn
             // 
@@ -217,6 +219,7 @@
             this.refreshBtn.Text = "Refresh";
             this.refreshBtn.UseVisualStyleBackColor = true;
             this.refreshBtn.Visible = false;
+            this.refreshBtn.Click += new System.EventHandler(this.testBtn_Click);
             // 
             // sendEmailBtn
             // 
@@ -264,11 +267,11 @@
             // 
             this.loadingLb.AutoSize = true;
             this.loadingLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadingLb.Location = new System.Drawing.Point(408, 246);
+            this.loadingLb.Location = new System.Drawing.Point(340, 263);
             this.loadingLb.Name = "loadingLb";
-            this.loadingLb.Size = new System.Drawing.Size(80, 20);
+            this.loadingLb.Size = new System.Drawing.Size(192, 20);
             this.loadingLb.TabIndex = 28;
-            this.loadingLb.Text = "Loading...";
+            this.loadingLb.Text = "Đang xử lý, vui lòng đợi...";
             this.loadingLb.Visible = false;
             // 
             // main
