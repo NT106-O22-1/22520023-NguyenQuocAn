@@ -30,8 +30,8 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Labellllll = new System.Windows.Forms.Label();
-            this.Label = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.imapTb = new System.Windows.Forms.TextBox();
@@ -50,6 +50,7 @@
             this.columnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderFrom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.loadingLb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imapNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.smtpNum)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -73,23 +74,23 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "IMAP Port";
             // 
-            // Labellllll
+            // label4
             // 
-            this.Labellllll.AutoSize = true;
-            this.Labellllll.Location = new System.Drawing.Point(628, 37);
-            this.Labellllll.Name = "Labellllll";
-            this.Labellllll.Size = new System.Drawing.Size(45, 16);
-            this.Labellllll.TabIndex = 10;
-            this.Labellllll.Text = "SMTP";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(628, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 16);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "SMTP";
             // 
-            // Label
+            // label5
             // 
-            this.Label.AutoSize = true;
-            this.Label.Location = new System.Drawing.Point(628, 69);
-            this.Label.Name = "Label";
-            this.Label.Size = new System.Drawing.Size(72, 16);
-            this.Label.TabIndex = 11;
-            this.Label.Text = "SMTP Port";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(628, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 16);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "SMTP Port";
             // 
             // label7
             // 
@@ -226,6 +227,7 @@
             this.sendEmailBtn.Text = "Gửi mail";
             this.sendEmailBtn.UseVisualStyleBackColor = true;
             this.sendEmailBtn.Visible = false;
+            this.sendEmailBtn.Click += new System.EventHandler(this.sendEmailBtn_Click);
             // 
             // listView
             // 
@@ -233,6 +235,7 @@
             this.columnHeaderDate,
             this.columnHeaderFrom,
             this.columnHeaderSubject});
+            this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(12, 143);
             this.listView.Name = "listView";
@@ -240,34 +243,47 @@
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseDoubleClick);
             // 
             // columnHeaderDate
             // 
             this.columnHeaderDate.Text = "Date";
-            this.columnHeaderDate.Width = 150;
+            this.columnHeaderDate.Width = 120;
             // 
             // columnHeaderFrom
             // 
             this.columnHeaderFrom.Text = "From";
-            this.columnHeaderFrom.Width = 250;
+            this.columnHeaderFrom.Width = 220;
             // 
             // columnHeaderSubject
             // 
             this.columnHeaderSubject.Text = "Subject";
-            this.columnHeaderSubject.Width = 700;
+            this.columnHeaderSubject.Width = 600;
+            // 
+            // loadingLb
+            // 
+            this.loadingLb.AutoSize = true;
+            this.loadingLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingLb.Location = new System.Drawing.Point(408, 246);
+            this.loadingLb.Name = "loadingLb";
+            this.loadingLb.Size = new System.Drawing.Size(80, 20);
+            this.loadingLb.TabIndex = 28;
+            this.loadingLb.Text = "Loading...";
+            this.loadingLb.Visible = false;
             // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 485);
+            this.Controls.Add(this.loadingLb);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.smtpNum);
             this.Controls.Add(this.imapNum);
             this.Controls.Add(this.smtpTb);
             this.Controls.Add(this.imapTb);
-            this.Controls.Add(this.Label);
-            this.Controls.Add(this.Labellllll);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -286,8 +302,8 @@
         #endregion
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label Labellllll;
-        private System.Windows.Forms.Label Label;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox imapTb;
@@ -306,5 +322,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderDate;
         private System.Windows.Forms.ColumnHeader columnHeaderFrom;
         private System.Windows.Forms.ColumnHeader columnHeaderSubject;
+        private System.Windows.Forms.Label loadingLb;
     }
 }
